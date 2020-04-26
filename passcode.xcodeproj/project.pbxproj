@@ -12,7 +12,15 @@
 		97DCED852455C74200706A91 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCED842455C74200706A91 /* SettingsViewController.swift */; };
 		97DCED8A2455C74700706A91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97DCED892455C74700706A91 /* Assets.xcassets */; };
 		97DCED8D2455C74700706A91 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97DCED8B2455C74700706A91 /* LaunchScreen.storyboard */; };
-		97DCED982455C74800706A91 /* passcodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCED972455C74800706A91 /* passcodeTests.swift */; };
+		97DCED982455C74800706A91 /* PasscodeUtilityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCED972455C74800706A91 /* PasscodeUtilityTests.swift */; };
+		97DCEDA72455CB2600706A91 /* KeychainUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCEDA62455CB2600706A91 /* KeychainUtility.swift */; };
+		97DCEDA92455CEC900706A91 /* KeychainQueryable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCEDA82455CEC900706A91 /* KeychainQueryable.swift */; };
+		97DCEDAB2455CEDC00706A91 /* KeychainError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCEDAA2455CEDC00706A91 /* KeychainError.swift */; };
+		97DCEDAE2455D4D800706A91 /* PasscodeQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCEDAD2455D4D800706A91 /* PasscodeQuery.swift */; };
+		97DCEDB12455D78200706A91 /* PasscodeUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCEDB02455D78200706A91 /* PasscodeUtility.swift */; };
+		97DCEDB42455DB9E00706A91 /* PasscodeError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCEDB32455DB9E00706A91 /* PasscodeError.swift */; };
+		97DCEDB62455E36100706A91 /* Passcode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCEDB52455E36100706A91 /* Passcode.swift */; };
+		97DCEDB8245602BA00706A91 /* PasscodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCEDB7245602B900706A91 /* PasscodeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,8 +42,16 @@
 		97DCED8C2455C74700706A91 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		97DCED8E2455C74700706A91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97DCED932455C74800706A91 /* passcodeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = passcodeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		97DCED972455C74800706A91 /* passcodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = passcodeTests.swift; sourceTree = "<group>"; };
+		97DCED972455C74800706A91 /* PasscodeUtilityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeUtilityTests.swift; sourceTree = "<group>"; };
 		97DCED992455C74800706A91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		97DCEDA62455CB2600706A91 /* KeychainUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainUtility.swift; sourceTree = "<group>"; };
+		97DCEDA82455CEC900706A91 /* KeychainQueryable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainQueryable.swift; sourceTree = "<group>"; };
+		97DCEDAA2455CEDC00706A91 /* KeychainError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainError.swift; sourceTree = "<group>"; };
+		97DCEDAD2455D4D800706A91 /* PasscodeQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeQuery.swift; sourceTree = "<group>"; };
+		97DCEDB02455D78200706A91 /* PasscodeUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeUtility.swift; sourceTree = "<group>"; };
+		97DCEDB32455DB9E00706A91 /* PasscodeError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeError.swift; sourceTree = "<group>"; };
+		97DCEDB52455E36100706A91 /* Passcode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passcode.swift; sourceTree = "<group>"; };
+		97DCEDB7245602B900706A91 /* PasscodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasscodeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,7 +105,8 @@
 		97DCED962455C74800706A91 /* passcodeTests */ = {
 			isa = PBXGroup;
 			children = (
-				97DCED972455C74800706A91 /* passcodeTests.swift */,
+				97DCEDB7245602B900706A91 /* PasscodeTests.swift */,
+				97DCED972455C74800706A91 /* PasscodeUtilityTests.swift */,
 				97DCED992455C74800706A91 /* Info.plist */,
 			);
 			path = passcodeTests;
@@ -98,7 +115,9 @@
 		97DCEDA22455C7A800706A91 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				97DCED842455C74200706A91 /* SettingsViewController.swift */,
+				97DCEDAC2455D4CC00706A91 /* Model */,
+				97DCEDA52455CB1200706A91 /* Utilities */,
+				97DCEDA42455CB0600706A91 /* ViewControllers */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -110,6 +129,51 @@
 				97DCED8B2455C74700706A91 /* LaunchScreen.storyboard */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		97DCEDA42455CB0600706A91 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				97DCED842455C74200706A91 /* SettingsViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		97DCEDA52455CB1200706A91 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				97DCEDAF2455D76500706A91 /* Keychain */,
+				97DCEDB22455D7A100706A91 /* Passcode */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		97DCEDAC2455D4CC00706A91 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				97DCEDB52455E36100706A91 /* Passcode.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		97DCEDAF2455D76500706A91 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				97DCEDA62455CB2600706A91 /* KeychainUtility.swift */,
+				97DCEDA82455CEC900706A91 /* KeychainQueryable.swift */,
+				97DCEDAA2455CEDC00706A91 /* KeychainError.swift */,
+			);
+			path = Keychain;
+			sourceTree = "<group>";
+		};
+		97DCEDB22455D7A100706A91 /* Passcode */ = {
+			isa = PBXGroup;
+			children = (
+				97DCEDB02455D78200706A91 /* PasscodeUtility.swift */,
+				97DCEDB32455DB9E00706A91 /* PasscodeError.swift */,
+				97DCEDAD2455D4D800706A91 /* PasscodeQuery.swift */,
+			);
+			path = Passcode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,9 +276,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97DCEDAB2455CEDC00706A91 /* KeychainError.swift in Sources */,
+				97DCEDB62455E36100706A91 /* Passcode.swift in Sources */,
+				97DCEDAE2455D4D800706A91 /* PasscodeQuery.swift in Sources */,
+				97DCEDA72455CB2600706A91 /* KeychainUtility.swift in Sources */,
 				97DCED852455C74200706A91 /* SettingsViewController.swift in Sources */,
+				97DCEDA92455CEC900706A91 /* KeychainQueryable.swift in Sources */,
 				97DCED812455C74200706A91 /* AppDelegate.swift in Sources */,
+				97DCEDB12455D78200706A91 /* PasscodeUtility.swift in Sources */,
 				97DCED832455C74200706A91 /* SceneDelegate.swift in Sources */,
+				97DCEDB42455DB9E00706A91 /* PasscodeError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,7 +293,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97DCED982455C74800706A91 /* passcodeTests.swift in Sources */,
+				97DCED982455C74800706A91 /* PasscodeUtilityTests.swift in Sources */,
+				97DCEDB8245602BA00706A91 /* PasscodeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -366,7 +438,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 4FVQPRS8SG;
 				INFOPLIST_FILE = passcode/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -374,6 +448,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rifeng-ding.passcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Development Wildcard";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -383,7 +458,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = 4FVQPRS8SG;
 				INFOPLIST_FILE = passcode/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -391,6 +468,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.rifeng-ding.passcode";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "Development Wildcard";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

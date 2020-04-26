@@ -10,12 +10,7 @@ import Foundation
 
 struct PasscodeQuery: KeychainQueryable {
 
-    enum KeychainAccount {
-
-        static let passcodeValue = "PasscodeQuery.passcode_value"
-        static let retryCount = "PasscodeQuery.retry_count"
-        static let unlockDate = "PasscodeQuery.unlock_date"
-    }
+    static let keychainAccount = "com.passcode.passcodeQuery"
 
     var query: [String: Any] {
         

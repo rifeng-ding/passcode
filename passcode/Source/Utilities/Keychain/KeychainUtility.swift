@@ -20,7 +20,7 @@ public class KeychainUtility {
 
         let encoder = JSONEncoder()
         guard let encodedValue = try? encoder.encode(codableObject) else {
-            throw KeychainError.string2DataConversionError
+            throw KeychainError.objectEncodingFailure
 
         }
 
@@ -74,7 +74,7 @@ public class KeychainUtility {
                 let value = try? decoder.decode(T.self, from: data)
                 else {
 
-                    throw KeychainError.data2StringConversionError
+                    throw KeychainError.valueDecodingFailure
             }
 
             return value

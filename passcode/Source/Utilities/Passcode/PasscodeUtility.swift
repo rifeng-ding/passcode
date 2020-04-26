@@ -22,7 +22,8 @@ public final class PasscodeUtility {
     static func currentPasscode() throws -> Passcode? {
 
         do {
-            return try self.keychainUtility.getValue(for: PasscodeQuery.KeychainAccount.passcodeValue, type: Passcode.self)
+            return try self.keychainUtility.getValue(for: PasscodeQuery.keychainAccount,
+                                                     type: Passcode.self)
         } catch {
             throw PasscodeError.readFailed
         }
@@ -31,7 +32,7 @@ public final class PasscodeUtility {
     static func saveToKeychain(_ passcode: Passcode) throws {
 
         do {
-            try self.keychainUtility.set(passcode, for: PasscodeQuery.KeychainAccount.passcodeValue)
+            try self.keychainUtility.set(passcode, for: PasscodeQuery.keychainAccount)
         } catch  {
             throw PasscodeError.updateFailed
         }

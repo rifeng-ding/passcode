@@ -67,9 +67,9 @@ class SettingsViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
 
         super.viewDidAppear(animated)
-        if self.isFirstLaunch && self.viewModel.isPasscodeEnabled {
+        if self.isFirstLaunch {
             self.isFirstLaunch = false
-            self.presentPasscodeViewController(withMode: .validation)
+            self.validatePasscodeIfNeeded()
         }
     }
 
@@ -89,7 +89,12 @@ class SettingsViewController: BaseViewController {
 
     @objc func appDidEntreForground() {
 
-        if self.viewModel.isPasscodeEnabled {
+        self.validatePasscodeIfNeeded()
+    }
+
+    func validatePasscodeIfNeeded() {
+
+        if self.viewModel.isPasscodeEnabled && self.presentedViewController == nil {
             self.presentPasscodeViewController(withMode: .validation)
         }
     }

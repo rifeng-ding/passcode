@@ -10,6 +10,11 @@ import Foundation
 
 public final class PasscodeUtility {
 
+    /// The date that is going to be used to test against passcode's unlockDate.
+    ///
+    /// For depdenency injection during unit tests.
+    static var _testCurrentDate: Date?
+
     private static let keychainUtility = KeychainUtility(secureStoreQueryable: PasscodeQuery())
 
     //MARK - Internal Methods
@@ -51,7 +56,15 @@ public final class PasscodeUtility {
             }
 
             if let unlockDate = currentPasscode.unlockDate {
-                if unlockDate < Date() {
+
+                // Didn't create TEST build configuration
+                #if DEBUG
+                let currentDate = self._testCurrentDate ?? Date()
+                #else
+                let currentDate = Date()
+                #endif
+
+                if currentDate < unlockDate {
                     throw PasscodeError.tooManyRetries(unlockDate: unlockDate)
                 } else {
                     currentPasscode.resetRetry()
@@ -74,5 +87,6 @@ public final class PasscodeUtility {
     public static func disablePasscode() {
 
         try? self.keychainUtility.removeAllValues()
+        self._testCurrentDate = nil
     }
 }

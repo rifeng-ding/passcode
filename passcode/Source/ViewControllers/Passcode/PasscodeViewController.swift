@@ -105,6 +105,12 @@ class PasscodeViewController: BaseViewController {
         }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+
+        super.viewDidAppear(animated)
+        self.textField.becomeFirstResponder()
+    }
+
     @objc private func cancelButtonTouchUpInside() {
 
         self.dismiss(animated: true) {
@@ -121,7 +127,8 @@ extension PasscodeViewController: UITextFieldDelegate {
 
         guard
             textField == self.textField,
-            let passcode = textField.text
+            let passcode = textField.text,
+            passcode.count > 0
             else {
                 return true
         }

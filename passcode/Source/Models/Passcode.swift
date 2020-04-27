@@ -8,22 +8,22 @@
 
 import Foundation
 
-struct Passcode: Codable {
+public struct Passcode: Codable {
 
-    static let retryLimit = 3
-    static let retryDelayInSeconds: TimeInterval = 60
+    public static let retryLimit = 3
+    public static let retryDelayInSeconds: TimeInterval = 60
 
-    let value: String
+    public let value: String
 
-    private(set) var retryCount = 0
-    private(set) var unlockDate: Date?
+    public private(set) var retryCount = 0
+    public private(set) var unlockDate: Date?
 
-    init(value: String) {
+    public init(value: String) {
 
         self.value = value
     }
 
-    mutating func validateAgainst(_ inputPasscode: String) -> Bool {
+    public mutating func validateAgainst(_ inputPasscode: String) -> Bool {
 
         guard self.value == inputPasscode else {
 
@@ -38,7 +38,7 @@ struct Passcode: Codable {
         return true
     }
 
-    mutating func resetRetry() {
+    public mutating func resetRetry() {
 
         self.retryCount = 0
         self.unlockDate = nil

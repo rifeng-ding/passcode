@@ -142,7 +142,7 @@
 		97DCEDA22455C7A800706A91 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				97DCEDAC2455D4CC00706A91 /* Model */,
+				97DCEDAC2455D4CC00706A91 /* Models */,
 				97DCEDA52455CB1200706A91 /* Utilities */,
 				97730BA52456402F00583142 /* Views */,
 				97DCEDA42455CB0600706A91 /* ViewControllers */,
@@ -178,12 +178,12 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
-		97DCEDAC2455D4CC00706A91 /* Model */ = {
+		97DCEDAC2455D4CC00706A91 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				97DCEDB52455E36100706A91 /* Passcode.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		97DCEDAF2455D76500706A91 /* Keychain */ = {

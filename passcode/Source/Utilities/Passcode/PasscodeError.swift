@@ -36,7 +36,7 @@ extension PasscodeError: LocalizedError {
              return NSLocalizedString("Wrong passcode. Remaining retry time(s): \(remainingRetries)", comment: "")
             
         case .tooManyRetries(let unlockDate):
-            return NSLocalizedString("Incorrect passcode. Retry is locked until \(unlockDate).", comment: "")
+            return NSLocalizedString("Wrong passcode. Retry is locked until \(unlockDate).", comment: "")
         }
     }
 }

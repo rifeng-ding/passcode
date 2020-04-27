@@ -36,6 +36,12 @@ class PasscodeViewModel {
     private(set) var mode: Mode
     private(set) var unconfirmedPasscode: String?
 
+    private lazy var dateFormatter: DateFormatter = {
+        let dataFormatter = DateFormatter()
+        dataFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return dataFormatter
+    }()
+
     var isSetupMode: Bool {
 
         if case .setup(_) = self.mode {
@@ -100,5 +106,10 @@ class PasscodeViewModel {
                 return .failure(error)
             }
         }
+    }
+
+    func formatUnlockDate(_ unlockDate: Date) -> String {
+
+        return self.dateFormatter.string(from: unlockDate)
     }
 }

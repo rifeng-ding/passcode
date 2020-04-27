@@ -60,7 +60,7 @@ class PasscodeViewController: BaseViewController {
         stackView.spacing = inset
         self.view.addSubview(stackView)
         // bottom constraint not set
-        // based on the assumtion that the stack view is always short enough
+        // based on the assumption that the stack view is always short enough
         stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,
                                        constant: inset).isActive = true
         stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,
@@ -114,37 +114,46 @@ extension PasscodeViewController: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 
-        guard textField == self.textField else {
-            return true
+        guard
+            textField == self.textField,
+            let passcode = textField.text
+            else {
+                return true
         }
 
         self.textField.resignFirstResponder()
 
-        if let passcode = textField.text {
+        switch self.viewModel.processPasscode(passcode) {
+        case .success:
+            self.errorMessageLabel.text = nil
+            switch self.viewModel.mode {
 
-            switch self.viewModel.processPasscode(passcode) {
-            case .success:
-                self.errorMessageLabel.text = nil
-                switch self.viewModel.mode {
-
-                case .validation:
-                    self.dismiss(animated: true, completion: nil)
-                case .setup(let isConfirmed):
-                    if isConfirmed {
-                        self.dismiss(animated: true) {
-                            self.delegate?.didDismissForCreation(creationSucceed: true)
-                        }
-                    } else {
-                        self.title = self.viewModel.title
-                        self.textField.placeholder = self.viewModel.placeholder
-                        self.textField.text = nil
-                        self.textField.becomeFirstResponder()
+            case .validation:
+                self.dismiss(animated: true, completion: nil)
+            case .setup(let isConfirmed):
+                if isConfirmed {
+                    self.dismiss(animated: true) {
+                        self.delegate?.didDismissForCreation(creationSucceed: true)
                     }
+                } else {
+                    self.title = self.viewModel.title
+                    self.textField.placeholder = self.viewModel.placeholder
+                    self.textField.text = nil
+                    self.textField.becomeFirstResponder()
                 }
-            case .failure(let error):
-                self.errorMessageLabel.text = error.localizedDescription
-                self.textField.text = nil
             }
+        case .failure(let error):
+
+            let errorMessage: String
+            switch error {
+            case PasscodeError.tooManyRetries(let unlockDate):
+                let formatedUnlockDate = self.viewModel.formatUnlockDate(unlockDate)
+                errorMessage = "Too many wrong attempts. Passcode is locked until \(formatedUnlockDate)"
+            default:
+                errorMessage = error.localizedDescription
+            }
+            self.errorMessageLabel.text = errorMessage
+            self.textField.text = nil
         }
 
         return false

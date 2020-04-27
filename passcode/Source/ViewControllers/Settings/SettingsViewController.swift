@@ -41,7 +41,7 @@ class SettingsViewController: BaseViewController {
         stackView.spacing = inset
         self.view.addSubview(stackView)
         // bottom constraint not set
-        // based on the assumtion that the stack view is always short enough
+        // based on the assumption that the stack view is always short enough
         stackView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor,
                                        constant: inset).isActive = true
         stackView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,
@@ -92,7 +92,7 @@ class SettingsViewController: BaseViewController {
         self.validatePasscodeIfNeeded()
     }
 
-    func validatePasscodeIfNeeded() {
+    private func validatePasscodeIfNeeded() {
 
         if self.viewModel.isPasscodeEnabled && self.presentedViewController == nil {
             self.presentPasscodeViewController(withMode: .validation)

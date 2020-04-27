@@ -74,21 +74,32 @@ class PasscodeUtilityTests: XCTestCase {
         do {
             let passcodeValue = "1234"
             try PasscodeUtility.updatePasscode(passcodeValue)
-            let validationResult = try PasscodeUtility.validate(passcodeValue)
-            XCTAssertTrue(validationResult)
+            try PasscodeUtility.validate(passcodeValue)
         } catch {
             XCTFail("Test failed with \(error.localizedDescription).")
         }
     }
 
     func testNegativeThenPosstiveValidationNoLockDown() {
+
         do {
             let passcodeValue = "1234"
             let wrongPasscodeValue = "abcd"
 
             try PasscodeUtility.updatePasscode(passcodeValue)
-            XCTAssertFalse(try PasscodeUtility.validate(wrongPasscodeValue))
-            XCTAssertTrue(try PasscodeUtility.validate(passcodeValue))
+            do {
+                try PasscodeUtility.validate(wrongPasscodeValue)
+            } catch {
+                switch error {
+                case PasscodeError.validationFailed(let remainingRetries):
+                    XCTAssertEqual(remainingRetries, Passcode.retryLimit - 1)
+                default:
+                    XCTFail("Detected wrong error: \(error.localizedDescription).")
+                }
+            }
+
+
+            try PasscodeUtility.validate(passcodeValue)
         } catch {
             XCTFail("Test failed with \(error.localizedDescription).")
         }
@@ -103,10 +114,20 @@ class PasscodeUtilityTests: XCTestCase {
             try PasscodeUtility.updatePasscode(passcodeValue)
 
             for retryNumber in 1 ... Passcode.retryLimit + 1 {
+
                 switch retryNumber {
+
                 case 1 ... Passcode.retryLimit - 1:
-                    let validationResult = try PasscodeUtility.validate(wrongPasscodeValue)
-                    XCTAssertFalse(validationResult)
+                    do {
+                        try PasscodeUtility.validate(wrongPasscodeValue)
+                    } catch {
+                        switch error {
+                        case PasscodeError.validationFailed(let remainingRetries):
+                            XCTAssertEqual(remainingRetries, Passcode.retryLimit - retryNumber)
+                        default:
+                            XCTFail("Detected wrong error: \(error.localizedDescription).")
+                        }
+                    }
 
                 default:
                     do {
@@ -117,6 +138,10 @@ class PasscodeUtilityTests: XCTestCase {
                     } catch {
                         switch error {
                         case PasscodeError.tooManyRetries(let unlockDate):
+
+                            // to test the convenient getter for unlockDate
+                            XCTAssertEqual(unlockDate, PasscodeUtility.unlockDate)
+
                             let targetDate = Int(Date().addingTimeInterval(Passcode.retryDelayInSeconds).timeIntervalSince1970)
                             let unlockDate = Int(unlockDate.timeIntervalSince1970)
                             XCTAssertEqual(unlockDate, targetDate)
@@ -141,7 +166,8 @@ class PasscodeUtilityTests: XCTestCase {
             try PasscodeUtility.updatePasscode(passcodeValue)
 
             for _ in 1 ..< Passcode.retryLimit {
-                _ = try PasscodeUtility.validate(wrongPasscodeValue)
+                // here, try? is used becuase the error here would be covered by test testNegativeValidationAndLockDown
+                _ = try? PasscodeUtility.validate(wrongPasscodeValue)
             }
 
             var targetUnlockDate: Date?
@@ -157,7 +183,7 @@ class PasscodeUtilityTests: XCTestCase {
             }
 
             PasscodeUtility._testCurrentDate = targetUnlockDate
-            XCTAssertTrue(try PasscodeUtility.validate(passcodeValue))
+            try PasscodeUtility.validate(passcodeValue)
 
         } catch {
             XCTFail("Test failed with \(error.localizedDescription).")

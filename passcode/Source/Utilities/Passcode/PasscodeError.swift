@@ -13,6 +13,7 @@ public enum PasscodeError: Error {
     case updateFailed
     case readFailed
     case notSetup
+    case validationFailed(remainingRetries: Int)
     case tooManyRetries(unlockDate: Date)
 }
 
@@ -30,9 +31,12 @@ extension PasscodeError: LocalizedError {
 
         case .notSetup:
             return NSLocalizedString("No passcode has been setup yet.", comment: "")
+
+        case .validationFailed(let remainingRetries):
+             return NSLocalizedString("Wrong passcode. Remaining retry time(s): \(remainingRetries)", comment: "")
             
         case .tooManyRetries(let unlockDate):
-            return NSLocalizedString("Incorrect passcode. Retry is locked until \(unlockDate).", comment: "")
+            return NSLocalizedString("Wrong passcode. Retry is locked until \(unlockDate).", comment: "")
         }
     }
 }

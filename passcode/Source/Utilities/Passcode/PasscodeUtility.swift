@@ -40,12 +40,22 @@ public final class PasscodeUtility {
 
     //MARK - Public Methods
 
+    public static var isPasscodeSetup: Bool {
+
+        return (try? self.currentPasscode()) != nil
+    }
+
+    public static var unlockDate: Date? {
+
+        return (try? self.currentPasscode())?.unlockDate
+    }
+
     public static func updatePasscode(_ newPasscode: String) throws {
 
         try self.saveToKeychain(Passcode(value: newPasscode))
     }
 
-    public static func validate(_ inputPasscode: String) throws -> Bool {
+    public static func validate(_ inputPasscode: String) throws {
 
         do {
             guard var currentPasscode = try self.currentPasscode() else {
@@ -76,9 +86,8 @@ public final class PasscodeUtility {
                 if let unlockDate = currentPasscode.unlockDate {
                     throw PasscodeError.tooManyRetries(unlockDate: unlockDate)
                 }
-                return false
+                throw PasscodeError.validationFailed(remainingRetries: Passcode.retryLimit - currentPasscode.retryCount)
             }
-            return true
 
         } catch {
             throw error

@@ -95,8 +95,13 @@ class PasscodeViewController: BaseViewController {
         }
         #endif
 
-        if self.viewModel.isSetupMode {
+        switch self.viewModel.mode {
+        case .setup(_):
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonTouchUpInside))
+        case .validation:
+            if let unlockDate = self.viewModel.unlockDate {
+                self.errorMessageLabel.text = self.viewModel.errorMessage(forUnlockDate: unlockDate)
+            }
         }
     }
 
@@ -144,11 +149,10 @@ extension PasscodeViewController: UITextFieldDelegate {
             }
         case .failure(let error):
 
-            let errorMessage: String
+            let errorMessage: String?
             switch error {
             case PasscodeError.tooManyRetries(let unlockDate):
-                let formatedUnlockDate = self.viewModel.formatUnlockDate(unlockDate)
-                errorMessage = "Too many wrong attempts. Passcode is locked until \(formatedUnlockDate)"
+                errorMessage = self.viewModel.errorMessage(forUnlockDate: unlockDate)
             default:
                 errorMessage = error.localizedDescription
             }

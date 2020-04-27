@@ -45,6 +45,11 @@ public final class PasscodeUtility {
         return (try? self.currentPasscode()) != nil
     }
 
+    public static var unlockDate: Date? {
+
+        return (try? self.currentPasscode())?.unlockDate
+    }
+
     public static func updatePasscode(_ newPasscode: String) throws {
 
         try self.saveToKeychain(Passcode(value: newPasscode))

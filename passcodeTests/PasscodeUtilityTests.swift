@@ -138,6 +138,10 @@ class PasscodeUtilityTests: XCTestCase {
                     } catch {
                         switch error {
                         case PasscodeError.tooManyRetries(let unlockDate):
+
+                            // to test the convenient getter for unlockDate
+                            XCTAssertEqual(unlockDate, PasscodeUtility.unlockDate)
+
                             let targetDate = Int(Date().addingTimeInterval(Passcode.retryDelayInSeconds).timeIntervalSince1970)
                             let unlockDate = Int(unlockDate.timeIntervalSince1970)
                             XCTAssertEqual(unlockDate, targetDate)

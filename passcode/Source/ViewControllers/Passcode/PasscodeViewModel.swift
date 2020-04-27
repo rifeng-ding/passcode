@@ -70,6 +70,11 @@ class PasscodeViewModel {
         }
     }
 
+    var unlockDate: Date? {
+
+        return PasscodeUtility.unlockDate
+    }
+
     init(mode: Mode) {
 
         self.mode = mode
@@ -108,8 +113,12 @@ class PasscodeViewModel {
         }
     }
 
-    func formatUnlockDate(_ unlockDate: Date) -> String {
+    func errorMessage(forUnlockDate unlockDate: Date) -> String? {
 
-        return self.dateFormatter.string(from: unlockDate)
+        guard Date() < unlockDate else {
+            return nil
+        }
+        let formattedDate = self.dateFormatter.string(from: unlockDate)
+        return "Too many wrong attempts. Passcode is locked until \(formattedDate)"
     }
 }

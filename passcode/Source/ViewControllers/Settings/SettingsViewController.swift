@@ -51,6 +51,18 @@ class SettingsViewController: BaseViewController {
 
         stackView.addArrangedSubview(self.passcodeSettingLabel)
         stackView.addArrangedSubview(self.passcodeSwitch)
+
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(button)
+        button.setTitle("Open Placeholder View Controller", for: .normal)
+        button.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        button.centerYAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.centerYAnchor).isActive = true
+        button.leadingAnchor.constraint(equalTo: self.view.leadingAnchor,
+                                           constant: inset).isActive = true
+        button.trailingAnchor.constraint(equalTo: self.view.trailingAnchor,
+                                            constant: -inset).isActive = true
+        button.addTarget(self, action: #selector(buttonTouchUpInside), for: .touchUpInside)
     }
 
     override func viewDidLoad() {
@@ -59,8 +71,12 @@ class SettingsViewController: BaseViewController {
         self.passcodeSwitch.isOn = self.viewModel.isPasscodeEnabled
 
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(appDidEntreForground),
+                                               selector: #selector(appWillEntreForground),
                                                name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(appDidEntreBackground),
+                                               name: UIApplication.didEnterBackgroundNotification,
                                                object: nil)
     }
 
@@ -87,9 +103,26 @@ class SettingsViewController: BaseViewController {
         }
     }
 
-    @objc func appDidEntreForground() {
+    @objc private func appWillEntreForground() {
 
         self.validatePasscodeIfNeeded()
+    }
+
+    @objc private func appDidEntreBackground() {
+
+        if let presentedViewController = self.presentedViewController,
+            let rootViewController = (presentedViewController as? UINavigationController)?.viewControllers.first,
+            !(rootViewController is PasscodeViewController) {
+
+            self.dismiss(animated: false, completion: nil)
+        }
+    }
+
+    @objc private func buttonTouchUpInside() {
+
+        let placeHolderViewController = PlaceholderViewController()
+        let navigationController = UINavigationController(rootViewController: placeHolderViewController)
+        self.presentViewControllerModally(navigationController)
     }
 
     private func validatePasscodeIfNeeded() {
@@ -104,9 +137,14 @@ class SettingsViewController: BaseViewController {
         let passcodeViewController = PasscodeViewController(mode: mode)
         passcodeViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: passcodeViewController)
-        navigationController.modalPresentationStyle = .fullScreen
-        navigationController.modalTransitionStyle = .coverVertical
-        self.present(navigationController, animated: true, completion: nil)
+        self.presentViewControllerModally(navigationController)
+    }
+
+    private func presentViewControllerModally(_ viewController: UIViewController) {
+
+        viewController.modalPresentationStyle = .fullScreen
+        viewController.modalTransitionStyle = .coverVertical
+        self.present(viewController, animated: true, completion: nil)
     }
 }
 

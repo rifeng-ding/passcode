@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		97173FCD24563498009D681C /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97173FCC24563498009D681C /* SettingsViewModel.swift */; };
 		97730BA72456404800583142 /* StyledTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97730BA62456404800583142 /* StyledTextField.swift */; };
+		97730BA924570BFC00583142 /* PlaceholderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97730BA824570BFC00583142 /* PlaceholderViewController.swift */; };
 		97DCED812455C74200706A91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCED802455C74200706A91 /* AppDelegate.swift */; };
 		97DCED832455C74200706A91 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCED822455C74200706A91 /* SceneDelegate.swift */; };
 		97DCED852455C74200706A91 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DCED842455C74200706A91 /* SettingsViewController.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		97173FCC24563498009D681C /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		97730BA62456404800583142 /* StyledTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyledTextField.swift; sourceTree = "<group>"; };
+		97730BA824570BFC00583142 /* PlaceholderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderViewController.swift; sourceTree = "<group>"; };
 		97DCED7D2455C74200706A91 /* passcode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = passcode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97DCED802455C74200706A91 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97DCED822455C74200706A91 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				97DCEDBB24561FAD00706A91 /* BaseViewController.swift */,
+				97730BA824570BFC00583142 /* PlaceholderViewController.swift */,
 				97173FCB2456347F009D681C /* Settings */,
 				97DCEDBF2456283700706A91 /* Passcode */,
 			);
@@ -327,6 +330,7 @@
 				97DCEDB12455D78200706A91 /* PasscodeUtility.swift in Sources */,
 				97DCED832455C74200706A91 /* SceneDelegate.swift in Sources */,
 				97DCEDB42455DB9E00706A91 /* PasscodeError.swift in Sources */,
+				97730BA924570BFC00583142 /* PlaceholderViewController.swift in Sources */,
 				97DCEDBE245627FD00706A91 /* PasscodeViewModel.swift in Sources */,
 				97730BA72456404800583142 /* StyledTextField.swift in Sources */,
 				97173FCD24563498009D681C /* SettingsViewModel.swift in Sources */,
